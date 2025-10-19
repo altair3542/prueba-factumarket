@@ -1,0 +1,18 @@
+default: &default
+  adapter: oracle_enhanced
+  host: <%= ENV.fetch("ORACLE_HOST", "localhost") %>
+  port: <%= ENV.fetch("ORACLE_PORT", 1521) %>
+  database: <%= ENV.fetch("ORACLE_DB", "XEPDB1") %>
+  username: <%= ENV.fetch("ORACLE_USER", "app_user") %>
+  password: <%= ENV.fetch("ORACLE_PASS", "app_pass") %>
+  encoding: utf8
+  pool: 5
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
