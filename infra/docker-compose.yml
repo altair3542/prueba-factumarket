@@ -1,0 +1,33 @@
+services:
+  oracle:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: oracle-xe
+    environment:
+      - ORACLE_PASSWORD=oracle
+      - APP_USER=app_user
+      - APP_USER_PASSWORD=app_pass
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'select 1 from dual;' | sqlplus -s system/oracle@//localhost:1521/XEPDB1 || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - ./oracle/init:/container-entrypoint-initdb.d:ro
+
+  mongo:
+    image: mongo:7
+    container_name: mongo
+    ports: ["27017:27017"]
+    volumes:
+      - ./mongo/init:/docker-entrypoint-initdb.d:ro
+
+  mongo-express:
+    image: mongo-express:1
+    container_name: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+    ports: ["8081:8081"]
+    depends_on: [mongo]
