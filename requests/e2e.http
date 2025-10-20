@@ -1,4 +1,4 @@
-### 1) Crear cliente
+### Crear cliente
 POST http://localhost:3000/clientes
 Content-Type: application/json
 
@@ -10,23 +10,35 @@ Content-Type: application/json
   }
 }
 
-### 2) Crear factura
+### Obtener cliente por ID
+GET http://localhost:3000/clientes/1
+
+### Listar clientes
+GET http://localhost:3000/clientes
+
+### Crear factura
 POST http://localhost:3001/facturas
 Content-Type: application/json
 
 {
   "factura": {
-    "cliente_id": 1,
+    "cliente_id": 0.4e1,
     "monto": 120000,
     "fecha": "2025-10-18",
     "descripcion": "Servicio X"
   }
 }
 
-### 3) Ver auditoría por factura
+### Obtener factura por ID
+GET http://localhost:3001/facturas/1
+
+### Listar facturas por rango de fechas
+GET http://localhost:3001/facturas?fechaInicio=2025-10-01&fechaFin=2025-10-31
+
+### Ver auditoría por factura
 GET http://localhost:5240/auditoria/1
 
-### 4) Negativo: factura con cliente inexistente
+### Negativo: factura con cliente inexistente
 POST http://localhost:3001/facturas
 Content-Type: application/json
 

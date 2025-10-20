@@ -9,7 +9,51 @@ Puma starting in single mode...
 *  Min threads: 5
 *  Max threads: 5
 *  Environment: development
-*          PID: 766
+*          PID: 17213
 * Listening on http://127.0.0.1:3001
 * Listening on http://[::1]:3001
 Use Ctrl-C to stop
+Started POST "/facturas" for 127.0.0.1 at 2025-10-19 22:50:14 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "SCHEMA_MIGRATIONS"."VERSION" FROM "SCHEMA_MIGRATIONS" ORDER BY "SCHEMA_MIGRATIONS"."VERSION" ASC[0m
+Processing by FacturasController#create as HTML
+  Parameters: {"factura"=>{"cliente_id"=>1, "monto"=>120000, "fecha"=>"2025-10-18", "descripcion"=>"Servicio X"}}
+/home/altair23/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-7.1.5.2/lib/action_controller/metal/rendering.rb:207: warning: Status code :unprocessable_entity is deprecated and will be removed in a future version of Rack. Please use :unprocessable_content instead.
+Completed 422 Unprocessable Content in 12ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 3533)
+
+
+Started POST "/facturas" for 127.0.0.1 at 2025-10-19 23:00:12 -0500
+Processing by FacturasController#create as HTML
+  Parameters: {"factura"=>{"cliente_id"=>3.0, "monto"=>120000, "fecha"=>"2025-10-18", "descripcion"=>"Servicio X"}}
+/home/altair23/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-7.1.5.2/lib/action_controller/metal/rendering.rb:207: warning: Status code :unprocessable_entity is deprecated and will be removed in a future version of Rack. Please use :unprocessable_content instead.
+Completed 422 Unprocessable Content in 14ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 438)
+
+
+Started POST "/facturas" for 127.0.0.1 at 2025-10-19 23:01:06 -0500
+Processing by FacturasController#create as HTML
+  Parameters: {"factura"=>{"cliente_id"=>4.0, "monto"=>120000, "fecha"=>"2025-10-18", "descripcion"=>"Servicio X"}}
+/home/altair23/.rbenv/versions/3.3.5/lib/ruby/gems/3.3.0/gems/actionpack-7.1.5.2/lib/action_controller/metal/rendering.rb:207: warning: Status code :unprocessable_entity is deprecated and will be removed in a future version of Rack. Please use :unprocessable_content instead.
+Completed 422 Unprocessable Content in 8ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 437)
+
+
+Started GET "/facturas/1" for 127.0.0.1 at 2025-10-19 23:01:15 -0500
+Processing by FacturasController#show as HTML
+  Parameters: {"id"=>"1"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 126)
+
+
+  
+NameError (undefined local variable or method `id' for an instance of Infrastructure::Repositories::OracleFacturasRepository):
+  
+app/infrastructure/repositories/oracle_facturas_repository.rb:16:in `find'
+app/controllers/facturas_controller.rb:28:in `set_factura'
+Started GET "/facturas?fechaInicio=2025-10-01&fechaFin=2025-10-31" for 127.0.0.1 at 2025-10-19 23:01:24 -0500
+Processing by FacturasController#index as HTML
+  Parameters: {"fechaInicio"=>"2025-10-01", "fechaFin"=>"2025-10-31"}
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 1210)
+
+
+  
+ActiveRecord::PreparedStatementInvalid (missing value for :INI in FECHA BETWEEN TO_DATE(:INI, 'YYYY-MM-DD') AND TO_DATE(:INI, 'YYYY-MM-DD')):
+  
+app/infrastructure/repositories/oracle_facturas_repository.rb:24:in `list_between'
+app/controllers/facturas_controller.rb:6:in `index'
