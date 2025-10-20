@@ -1,0 +1,31 @@
+Bundle complete! 9 Gemfile dependencies, 82 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+=> Booting Puma
+=> Rails 7.1.5.2 application starting in development 
+=> Run `bin/rails server --help` for more startup options
+Puma starting in single mode...
+* Puma version: 7.1.0 ("Neon Witch")
+* Ruby version: ruby 3.3.5 (2024-09-03 revision ef084cc8f4) [x86_64-linux]
+*  Min threads: 5
+*  Max threads: 5
+*  Environment: development
+*          PID: 72022
+* Listening on http://127.0.0.1:3000
+* Listening on http://[::1]:3000
+Use Ctrl-C to stop
+Started GET "/clientes" for 127.0.0.1 at 2025-10-19 21:15:56 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "SCHEMA_MIGRATIONS"."VERSION" FROM "SCHEMA_MIGRATIONS" ORDER BY "SCHEMA_MIGRATIONS"."VERSION" ASC[0m
+Processing by ClientesController#index as HTML
+  [1m[36mCliente Load (0.6ms)[0m  [1m[34mSELECT * FROM (SELECT "CLIENTES".* FROM "CLIENTES" ORDER BY "ID" DESC ) WHERE ROWNUM <= :a1[0m  [["LIMIT", 100]]
+  ↳ app/controllers/clientes_controller.rb:3:in `index'
+Completed 200 OK in 149ms (Views: 0.9ms | ActiveRecord: 4.4ms | Allocations: 10588)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-10-19 21:15:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2025-10-19 21:18:14 -0500 ===
+- Goodbye!
+Exiting

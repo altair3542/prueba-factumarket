@@ -1,0 +1,15 @@
+Bundle complete! 9 Gemfile dependencies, 82 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+=> Booting Puma
+=> Rails 7.1.5.2 application starting in development 
+=> Run `bin/rails server --help` for more startup options
+Puma starting in single mode...
+* Puma version: 7.1.0 ("Neon Witch")
+* Ruby version: ruby 3.3.5 (2024-09-03 revision ef084cc8f4) [x86_64-linux]
+*  Min threads: 5
+*  Max threads: 5
+*  Environment: development
+*          PID: 716
+* Listening on http://127.0.0.1:3000
+* Listening on http://[::1]:3000
+Use Ctrl-C to stop

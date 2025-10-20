@@ -1,0 +1,100 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "DBs: up",
+      "type": "shell",
+      "command": "docker compose -f infra/docker-compose.yml up -d",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Auditoría (.NET)",
+      "type": "shell",
+      "command": "bash -lc 'cd auditoria-dotnet/Auditoria.Api && export MONGO_URL=\"mongodb://localhost:27017\" ASPNETCORE_URLS=\"http://localhost:5240\" && dotnet run'",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "."
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Building...",
+          "endsPattern": "Now listening on:"
+        }
+      }
+    },
+    {
+      "label": "Clientes (Rails 3000)",
+      "type": "shell",
+      "command": "bash -lc 'cd clientes-ruby && export ORACLE_HOST=localhost ORACLE_PORT=1521 ORACLE_DB=XEPDB1 ORACLE_USER=app_user ORACLE_PASS=app_pass NLS_LANG=.AL32UTF8 AUDITORIA_URL=http://localhost:5240 && bundle install && bin/rails s -p 3000'",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "."
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "=> Booting Puma",
+          "endsPattern": "Listening on http://0.0.0.0:3000"
+        }
+      }
+    },
+    {
+      "label": "Facturas (Rails 3001)",
+      "type": "shell",
+      "command": "bash -lc 'cd facturas-ruby && export ORACLE_HOST=localhost ORACLE_PORT=1521 ORACLE_DB=XEPDB1 ORACLE_USER=app_user ORACLE_PASS=app_pass NLS_LANG=.AL32UTF8 CLIENTES_URL=http://localhost:3000 AUDITORIA_URL=http://localhost:5240 && bundle install && bin/rails s -p 3001'",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "."
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "=> Booting Puma",
+          "endsPattern": "Listening on http://0.0.0.0:3001"
+        }
+      }
+    },
+    {
+      "label": "Start ALL",
+      "dependsOn": [
+        "DBs: up",
+        "Auditoría (.NET)",
+        "Clientes (Rails 3000)",
+        "Facturas (Rails 3001)"
+      ],
+      "dependsOrder": "parallel"
+    },
+    {
+      "label": "DBs: down",
+      "type": "shell",
+      "command": "docker compose -f infra/docker-compose.yml down",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ]
+}

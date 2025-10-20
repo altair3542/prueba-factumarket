@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "oqKd+4qy21CRKANkN/7trpdbAoMdA15D8hS8gpmgro0=",
+  "Source": "Auditoria.Api",
+  "BasePath": "_content/Auditoria.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

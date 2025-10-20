@@ -1,0 +1,39 @@
+### 1) Crear cliente
+POST http://localhost:3000/clientes
+Content-Type: application/json
+
+{
+  "cliente": {
+    "nombre": "Ana",
+    "email": "ana@ejemplo.com",
+    "identificacion": "AA-001"
+  }
+}
+
+### 2) Crear factura
+POST http://localhost:3001/facturas
+Content-Type: application/json
+
+{
+  "factura": {
+    "cliente_id": 1,
+    "monto": 120000,
+    "fecha": "2025-10-18",
+    "descripcion": "Servicio X"
+  }
+}
+
+### 3) Ver auditoría por factura
+GET http://localhost:5240/auditoria/1
+
+### 4) Negativo: factura con cliente inexistente
+POST http://localhost:3001/facturas
+Content-Type: application/json
+
+{
+  "factura": {
+    "cliente_id": 999999,
+    "monto": 100,
+    "fecha": "2025-10-18"
+  }
+}
