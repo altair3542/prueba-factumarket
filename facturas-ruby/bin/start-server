@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Cargar la configuración del entorno
+source bin/setup-oracle-env
+
+# Iniciar el servidor Rails en el puerto 3002
+bin/rails server -p 3002

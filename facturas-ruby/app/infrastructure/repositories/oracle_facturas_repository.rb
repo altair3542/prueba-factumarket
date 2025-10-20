@@ -1,4 +1,4 @@
-module Infraestructure
+module Infrastructure
   module Repositories
     class OracleFacturasRepository < Domain::Repositories::FacturasRepository
       def create!(entity)
@@ -17,10 +17,10 @@ module Infraestructure
       end
 
       def list(limit: 100)
-        factura.order(ID: :desc).limit(limit)
+        Factura.order(ID: :desc).limit(limit)
       end
 
-      def list_between(ini, fin.)
+      def list_between(ini, fin)
         Factura.where(
           "FECHA BETWEEN TO_DATE(:INI, 'YYYY-MM-DD') AND TO_DATE(:INI, 'YYYY-MM-DD')",
           ini: ini, fin: fin

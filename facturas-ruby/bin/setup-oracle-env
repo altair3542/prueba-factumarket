@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Configuración de Oracle
+export ORACLE_HOST=localhost
+export ORACLE_PORT=1521
+export ORACLE_DB=XEPDB1
+export ORACLE_USER=app_user
+export ORACLE_PASS=app_pass
+
+# Configuración de NLS_LANG para manejo correcto de caracteres
+export NLS_LANG=AMERICAN_AMERICA.AL32UTF8
+
+# Configuración de URLs de microservicios
+export CLIENTES_URL=http://localhost:3000
+export AUDITORIA_URL=http://localhost:5240
+
+# Mostrar la configuración actual
+echo "Configuración de Oracle:"
+echo "Host: $ORACLE_HOST"
+echo "Puerto: $ORACLE_PORT"
+echo "Base de datos: $ORACLE_DB"
+echo "Usuario: $ORACLE_USER"
+echo "NLS_LANG: $NLS_LANG"
+
+echo -e "\nConfiguración de Microservicios:"
+echo "Clientes URL: $CLIENTES_URL"
+echo "Auditoría URL: $AUDITORIA_URL"

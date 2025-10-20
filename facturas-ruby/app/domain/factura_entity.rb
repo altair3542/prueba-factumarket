@@ -6,7 +6,7 @@ module Domain
       @cliente_id = cliente_id
       @monto = monto
       @fecha = fecha
-      @descripcion = descripcio
+      @descripcion = descripcion
     end
   end
 end

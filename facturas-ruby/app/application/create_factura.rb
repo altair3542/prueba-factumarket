@@ -9,7 +9,7 @@ module Application
     def call(params)
       cliente_id = (params["CLIENTE_ID"] || params["cliente_id"]).to_i
       monto = (params["MONTO"] || params["monto"]).to_f
-      fecha = params["FECHA"] || params["fechas"]
+      fecha = params["FECHA"] || params["fecha"]
       descripcion = params["DESCRIPCION"] || params["descripcion"]
 
       raise ArgumentError, "CLIENTE_ID Requerido" if cliente_id <= 0
@@ -17,10 +17,10 @@ module Application
       raise ArgumentError, "FECHA requerida" if fecha.nil? || fecha.strip.empty?
 
       unless @clientes_api.cliente_existe?(cliente_id)
-        raise ArgumentError, "Cliente no Existe"
+        raise ArgumentError, "Cliente no existe"
       end
 
-      enitity = Domain::FacturaEntity.new(
+      entity = Domain::FacturaEntity.new(
         cliente_id: cliente_id, monto: monto, fecha: fecha, descripcion: descripcion
       )
 
@@ -36,7 +36,7 @@ module Application
       rescue
         Rails.logger.warn("[Auditoria] Falló el envio del evento: #{e.class} #{e.message}")
       end
-      
+
       rec
     end
   end
